@@ -25,11 +25,22 @@ topMenuEl.classList.add('flex-around');
 
 // Menu data structure (copied from lab page)
 var menuLinks = [
-    {text: 'about', href: '/about'}, // each of these is an object with 2 elements
-    {text: 'catalog', href: '/catalog'},
-    {text: 'orders', href: '/orders'},
-    {text: 'account', href: '/account'},
-  ];
+  {text: 'about', href: '/about'},
+  {text: 'catalog', href: '#', subLinks: [
+    {text: 'all', href: '/catalog/all'},
+    {text: 'top selling', href: '/catalog/top'},
+    {text: 'search', href: '/catalog/search'},
+  ]},
+  {text: 'orders', href: '#' , subLinks: [
+    {text: 'new', href: '/orders/new'},
+    {text: 'pending', href: '/orders/pending'},
+    {text: 'history', href: '/orders/history'},
+  ]},
+  {text: 'account', href: '#', subLinks: [
+    {text: 'profile', href: '/account/profile'},
+    {text: 'sign out', href: '/account/signout'},
+  ]},
+];
 
 // 3.1 Iterate over the entire menuLinksarray and for each "link" object:
 // Create an <a> element
@@ -43,3 +54,56 @@ for (let link of menuLinks) { // this sets the
     a.innerText=link.text; // calls the text to show in each button
     topMenuEl.append(a); // this attaches the elements that were created to the parent
 }
+
+// =====================================================================
+
+// 4.0 Select and cache the <nav id="sub-menu"> element in a variable named subMenuEl. - //* done
+const subMenuEl = document.querySelector('#sub-menu');
+
+// 4.1 Set the height subMenuEl element to be 100%. //* done
+subMenuEl.style.height = '100%';
+
+// 4.2 Set the background color of subMenuEl to the value stored in the --sub-menu-bg CSS custom property. //* done
+subMenuEl.style.backgroundColor = 'var(--sub-menu-bg)';
+
+// 4.3 Add the class of flex-around to the subMenuEl element. //* done
+subMenuEl.classList.add('flex-around');
+
+//4.4 Set the CSS positionproperty of subMenuElto the value of absolute. //* done
+
+// 4.5 Set the CSS top property of subMenuElto the value of 0. //* done
+
+
+// 5.1 Select and cache the all of the <a>elements inside of topMenuElin a variable named topMenuLinks.
+// Declare a global showing SubMenuvariable and initialize it to false;
+const topMenuLinks = document.querySelectorAll('a');
+const showingSubMenu = false;
+// console.log(topMenuEl);
+// console.log(topMenuLinks);
+// console.log(subMenuEl);
+
+
+// 5.2 Attach a delegated 'click' event listener to topMenuEl.
+// The first line of code of the event listener function should call the event object's preventDefault()method.
+// The second line of code function should immediately return if the element clicked was not an <a>element.
+// console.logthe content of the <a>to verify the handler is working.
+
+topMenuEl.addEventListener('click', function(event) {
+  event.preventDefault();
+  if(event.target.tagName !== 'a') {
+    return
+  }
+  console.log(e.target);
+});
+
+
+// topMenuEl.addEventListener('click', function(event) {
+//   event.preventDefault()
+//   // console.log(EventSource);
+//   }
+//   if(event.target.tagName !== 'a') {
+//     return
+//   }
+//   console.log(e.target);
+// });
+
